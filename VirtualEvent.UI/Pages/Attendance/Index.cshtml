@@ -1,0 +1,64 @@
+﻿@page
+@model VirtualEvent.UI.Pages.Attendance.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table" id="tblAttendances" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Attendances[0].FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Attendances[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Attendances[0].AttendanceDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Attendances[0].Event)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Attendances)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+            <td>
+                @item.AttendanceDate.ToShortDateString()
+            </td>
+                <td>
+                    @(item.Event.Title.Length>20 ? item.Event.Title.Substring(0, 20)+"..." : item.Event.Title)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.AttendanceId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.AttendanceId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.AttendanceId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#tblAttendances').DataTable();
+        });
+    </script>
+}

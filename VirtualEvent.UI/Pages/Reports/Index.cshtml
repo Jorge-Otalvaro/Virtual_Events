@@ -1,0 +1,68 @@
+﻿@page
+@model VirtualEvent.UI.Pages.Reports.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+@*<p>
+        <a asp-page="Create">Create New</a>
+    </p>*@
+<table class="table" id="tblEvents" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Events[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Events[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Events[0].StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Events[0].EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Events[0].EndTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Events)
+        {
+            <tr>
+                <td>
+                    @(item.Title.Length>50 ? item.Title.Substring(0, 50)+"..." : item.Title)
+                </td>
+                <td>
+                    @item.StartDate.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @item.EndDate.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.EventId">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#tblEvents').DataTable();
+        });
+    </script>
+}

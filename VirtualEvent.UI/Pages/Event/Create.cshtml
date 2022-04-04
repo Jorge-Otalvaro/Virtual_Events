@@ -1,0 +1,70 @@
+﻿@page
+@model VirtualEvent.UI.Pages.Event.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Events</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Events.OrganizerId" class="control-label"></label>
+                <input asp-for="Events.OrganizerId" class="form-control" />
+                <span asp-validation-for="Events.OrganizerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Events.Title" class="control-label"></label>
+                <input asp-for="Events.Title" class="form-control" />
+                <span asp-validation-for="Events.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Events.StartDate" class="control-label"></label>
+                <input asp-for="Events.StartDate" class="form-control" />
+                <span asp-validation-for="Events.StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Events.StartTime" class="control-label"></label>
+                <input asp-for="Events.StartTime" class="form-control" />
+                <span asp-validation-for="Events.StartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Events.EndDate" class="control-label"></label>
+                <input asp-for="Events.EndDate" class="form-control" />
+                <span asp-validation-for="Events.EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Events.EndTime" class="control-label"></label>
+                <input asp-for="Events.EndTime" class="form-control" />
+                <span asp-validation-for="Events.EndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Events.Url" class="control-label"></label>
+                <input asp-for="Events.Url" class="form-control" />
+                <span asp-validation-for="Events.Url" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Events.Notes" class="control-label"></label>
+                <input asp-for="Events.Notes" class="form-control" />
+                <span asp-validation-for="Events.Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
